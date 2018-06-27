@@ -6,6 +6,36 @@
 //   reverse('hello') === 'olleh'
 //   reverse('Greetings!') === '!sgniteerG'
 
-function reverse(str) {}
+function reverse (str) {
+  return str
+    .split('')
+    .reverse()
+    .join('')
+}
 
-module.exports = reverse;
+// function reverse(str) {
+//   const strLength = str.length
+//   let reverseStr = ''
+//
+//   for (let i = strLength - 1; i >= 0; i--) {
+//     reverseStr += str[i]
+//   }
+//
+//   return reverseStr
+// }
+
+// function reverse(str) {
+//   return str.split('').reduce((rev, letter) => letter + rev, '')
+// }
+
+// function reverse(str) {
+//   let reversedStr = ''
+//
+//   for (let letter of str) {
+//     reversedStr = letter + reversedStr
+//   }
+//
+//   return reversedStr
+// }
+
+module.exports = reverse
