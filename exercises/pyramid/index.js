@@ -38,6 +38,7 @@ function fillSpacesToWidth (blocks, width) {
   return `${spaces}${blocks}${spaces}`
 }
 
+// TODO: recursion
 function pyramid(n) {
   const width = n * 2 - 1
 

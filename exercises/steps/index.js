@@ -17,6 +17,7 @@
 //       '### '
 //       '####'
 
+// TODO: recursion
 function steps(n) {
   let stepsString = ''
   for (let i = 0; i < n; i++) {
