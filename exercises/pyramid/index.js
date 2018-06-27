@@ -14,6 +14,39 @@
 //       ' ### '
 //       '#####'
 
-function pyramid(n) {}
+function getExtraBlocksForLevel (level) {
+  if (level === 1) {
+    return '#'
+  } else {
+    return '##'
+  }
+}
+
+function getSpaces (n) {
+  let spaces = ''
+
+  for (let i = 0; i < n; i++) {
+    spaces += ' '
+  }
+
+  return spaces
+}
+
+function fillSpacesToWidth (blocks, width) {
+  const spaces = getSpaces((width - blocks.length) / 2)
+
+  return `${spaces}${blocks}${spaces}`
+}
+
+function pyramid(n) {
+  const width = n * 2 - 1
+
+  let blocks = ''
+
+  for (let level = 1; level <= n; level++) {
+    blocks += getExtraBlocksForLevel(level)
+    console.log(fillSpacesToWidth(blocks, width))
+  }
+}
 
 module.exports = pyramid;
