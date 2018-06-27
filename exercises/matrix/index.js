@@ -15,6 +15,7 @@
 //     [11, 16, 15, 6],
 //     [10,  9,  8, 7]]
 
+// TODO: four directions in once
 function matrix(n) {}
 
 module.exports = matrix;
