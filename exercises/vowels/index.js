@@ -7,6 +7,17 @@
 //   vowels('Why do you ask?') --> 4
 //   vowels('Why?') --> 0
 
-function vowels(str) {}
+// TODO: regexp
+function vowels(str) {
+  const vowels = {
+    a: true,
+    e: true,
+    i: true,
+    o: true,
+    u: true
+  }
+
+  return str.split('').reduce((count, char) => count += vowels[char.toLowerCase()] ? 1 : 0, 0)
+}
 
 module.exports = vowels;
