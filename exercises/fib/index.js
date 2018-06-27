@@ -8,6 +8,40 @@
 // Example:
 //   fib(4) === 3
 
-function fib(n) {}
+// function fib(n) {
+//   const fibArr = [0, 1]
+//
+//   for (let i = 2; i <= n; i++) {
+//     fibArr[i] = fibArr[i - 1] + fibArr[i - 2]
+//   }
+//
+//   return fibArr[n]
+// }
 
-module.exports = fib;
+function memoize (fn) {
+  const cache = new Map()
+
+  return function (...args) {
+    if (!cache.get(args[0])) {
+      cache.set(args[0], fn.apply(this, args))
+    }
+
+    return cache.get(args[0])
+  }
+}
+
+function slowFib(n) {
+  if (n === 0) {
+    return 0
+  }
+
+  if (n === 1) {
+    return 1
+  }
+
+  return fib(n - 1) + fib(n - 2)
+}
+
+const fib = memoize(slowFib)
+
+module.exports = fib
