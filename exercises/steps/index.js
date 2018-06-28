@@ -17,17 +17,19 @@
 //       '### '
 //       '####'
 
-// TODO: recursion
-function steps(n) {
-  let stepsString = ''
-  for (let i = 0; i < n; i++) {
-    stepsString += ' '
+function steps(n, level = 0, blocks = '') {
+  if (n === level) {
+    return;
   }
 
-  for (let i = 1; i <= n; i++) {
-    stepsString = stepsString.replace(' ', '#')
-    console.log(stepsString)
+  if (blocks.length === n) {
+    console.log(blocks)
+    return steps(n, level + 1)
   }
+
+  blocks += blocks.length <= level ? '#' : ' '
+
+  return steps(n, level, blocks)
 }
 
 module.exports = steps;
