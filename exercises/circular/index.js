@@ -12,6 +12,7 @@
 //   c.next = b;
 //   circular(l) // true
 
+// TODO: slow and fast
 function circular(list) {}
 
 module.exports = circular;

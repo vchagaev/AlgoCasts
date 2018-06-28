@@ -14,7 +14,6 @@
 
 // TODO: slow and fast
 function midpoint(list) {
-  return
 }
 
 module.exports = midpoint;
