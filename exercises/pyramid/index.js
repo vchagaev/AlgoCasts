@@ -14,40 +14,27 @@
 //       ' ### '
 //       '#####'
 
-function getExtraBlocksForLevel (level) {
-  if (level === 1) {
-    return '#'
-  } else {
-    return '##'
-  }
-}
-
-function getSpaces (n) {
-  let spaces = ''
-
-  for (let i = 0; i < n; i++) {
-    spaces += ' '
+function pyramid(n, level = 0, blocks = '') {
+  if (level === n) {
+    return;
   }
 
-  return spaces
-}
-
-function fillSpacesToWidth (blocks, width) {
-  const spaces = getSpaces((width - blocks.length) / 2)
-
-  return `${spaces}${blocks}${spaces}`
-}
-
-// TODO: recursion
-function pyramid(n) {
   const width = n * 2 - 1
-
-  let blocks = ''
-
-  for (let level = 1; level <= n; level++) {
-    blocks += getExtraBlocksForLevel(level)
-    console.log(fillSpacesToWidth(blocks, width))
+  if (blocks.length === width) {
+    console.log(blocks)
+    return pyramid(n, level + 1)
   }
+
+  const leftBound = Math.floor(width / 2) - level - 1
+  const rightBound = Math.ceil(width / 2) + level - 1
+  let add = ' '
+
+  // TODO: midpoint
+  if (blocks.length > leftBound && blocks.length <= rightBound) {
+    add = '#'
+  }
+
+  return pyramid(n, level, blocks + add)
 }
 
 module.exports = pyramid;
