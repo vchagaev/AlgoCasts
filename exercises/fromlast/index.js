@@ -11,6 +11,9 @@
 //    list.insertLast('d');
 //    fromLast(list, 2).data // 'b'
 
-function fromLast(list, n) {}
+
+// TODO: slow and fast
+function fromLast(list, n) {
+}
 
 module.exports = fromLast;
