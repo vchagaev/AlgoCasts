@@ -11,6 +11,9 @@
 // 4       5
 // Answer: [1, 3, 2]
 
-function levelWidth(root) {}
+// TODO: with special separator
+function levelWidth(root) {
+
+}
 
 module.exports = levelWidth;
