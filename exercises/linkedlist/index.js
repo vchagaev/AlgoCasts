@@ -35,8 +35,11 @@ class LinkedList {
     return this.head
   }
 
-  // TODO: null in the head
   getLast() {
+    if (!this.head) {
+      return
+    }
+
     let last = this.head
 
     while (last.next) {
@@ -73,23 +76,16 @@ class LinkedList {
     prev.next = null
   }
 
-  // TODO: using getLast
   insertLast(data) {
     if (!this.head) {
       this.head = new Node(data)
       return;
     }
 
-    let cur = this.head
-
-    while (cur.next) {
-      cur = cur.next
-    }
-
-    cur.next = new Node(data)
+    const lastNode = this.getLast()
+    lastNode.next = new Node(data)
   }
 
-  // TODO: return from while
   getAt(n) {
     if (!this.head) {
       return null
@@ -98,98 +94,72 @@ class LinkedList {
     let curIndex = 0
     let curNode = this.head
 
-    while (curIndex !== n && curNode) {
+    while (curNode) {
+      if (curIndex === n) {
+        return curNode
+      }
+
       curNode = curNode.next
       curIndex += 1
     }
 
-    return curNode ? curNode : null
+    return null
   }
 
-  // TODO: simplify and using getAt
   removeAt(n) {
     if (!this.head) {
       return null
     }
 
-    let prevNode = null
-    let curNode = this.head
-    let curIndex = 0
-
-    while (curIndex !== n && curNode) {
-      prevNode = curNode
-      curNode = curNode.next
-      curIndex += 1
-    }
-
-    if (!curNode) {
-      return null
-    }
-
-    if (!prevNode) {
+    if (n === 0) {
       this.head = this.head.next
-    } else {
-      prevNode.next = curNode.next
+      return
     }
+
+    const prev = this.getAt(n - 1)
+    const cur = this.getAt(n)
+    if (!prev || !cur ) {
+      return
+    }
+
+    prev.next = cur.next
   }
 
-  // TODO: simplify and using getAt
   insertAt(data, n) {
     if (n === 0) {
       this.head = new Node(data, this.head)
-      return;
+      return
     }
 
-    let curIndex = 0
-    let curNode = this.head
-    let prevNode = this.head
+    const prev = this.getAt(n - 1)
+    const cur = this.getAt(n)
 
-    while (curIndex !== n && curNode && prevNode) {
-      prevNode = curNode
-      curNode = curNode && curNode.next
-      curIndex += 1
+    if (!cur) {
+      this.insertLast(data)
+      return
     }
 
-    prevNode.next = new Node(data, curNode)
+    prev.next = new Node(data, cur)
   }
 
-  // TODO: with counter
   forEach(fn) {
     let curNode = this.head
+    let counter = 0
 
     while (curNode) {
-      fn.call(null, curNode);
+      fn.call(null, curNode, counter);
       curNode = curNode.next
+      counter++
     }
   }
 
-  // TODO: with generators
-  [Symbol.iterator]() {
-    return this
-  }
+  *[Symbol.iterator]() {
+    let cur = this.head
 
-  // TODO: only generators
-  next() {
-    if (!this.cur) {
-      this.cur = this.head
-    } else {
-      this.cur = this.cur.next
+    while (cur) {
+      yield cur
+      cur = cur.next
     }
-
-    const isLast = !this.cur || !this.cur.next
-    const result = {done: isLast}
-
-    if (this.cur) {
-      result.value = {
-        data: this.cur.data
-      }
-    }
-
-    if (isLast) {
-      this.cur = null
-    }
-
-    return result
   }
 }
 
