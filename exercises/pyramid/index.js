@@ -25,12 +25,11 @@ function pyramid(n, level = 0, blocks = '') {
     return pyramid(n, level + 1)
   }
 
-  const leftBound = Math.floor(width / 2) - level - 1
-  const rightBound = Math.ceil(width / 2) + level - 1
+  const midpointIndex = Math.floor(width / 2)
+  const curBlockIndex = blocks.length
   let add = ' '
 
-  // TODO: midpoint
-  if (blocks.length > leftBound && blocks.length <= rightBound) {
+  if ((curBlockIndex >= midpointIndex - level) && (curBlockIndex <= midpointIndex + level)) {
     add = '#'
   }
 
