@@ -12,8 +12,26 @@
 //    fromLast(list, 2).data // 'b'
 
 
-// TODO: slow and fast
 function fromLast(list, n) {
+  let slow = list.getFirst()
+  let fast = list.getFirst()
+
+  let counter = 0;
+  while (counter !== n && fast) {
+    fast = fast.next
+    counter++
+  }
+
+  if (!fast) {
+    return slow
+  }
+
+  while (fast.next) {
+    slow = slow.next
+    fast = fast.next
+  }
+
+  return slow
 }
 
 module.exports = fromLast;
