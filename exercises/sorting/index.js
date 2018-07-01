@@ -35,13 +35,24 @@ function selectionSort (arr) {
   return arr
 }
 
-// TODO: sort
 function mergeSort (arr) {
+  if (arr.length === 1) {
+    return arr
+  }
 
+  const mid = Math.floor(arr.length / 2)
+
+  return merge(mergeSort(arr.slice(0 , mid)), mergeSort(arr.slice(mid)))
 }
 
 function merge (left, right) {
+  const mergedArray = []
 
+  while (left.length && right.length) {
+    mergedArray.push(left[0] < right[0] ? left.shift() : right.shift())
+  }
+
+  return [...mergedArray, ...left, ...right]
 }
 
-module.exports = { bubbleSort, selectionSort, mergeSort }
+module.exports = { bubbleSort, selectionSort, mergeSort, merge }
