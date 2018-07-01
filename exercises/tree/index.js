@@ -30,12 +30,32 @@ class Tree {
     this.root = null
   }
 
-  // TODO: with queue
   traverseBF(fn) {
+    if (!this.root) {
+      return null
+    }
+
+    const nodes = [this.root]
+
+    while (nodes.length) {
+      const curNode = nodes.shift()
+      nodes.push(...curNode.children)
+      fn.call(this, curNode)
+    }
   }
 
-  // TODO: with stack
   traverseDF(fn) {
+    if (!this.root) {
+      return null
+    }
+
+    const nodes = [this.root]
+
+    while (nodes.length) {
+      const curNode = nodes.shift()
+      nodes.unshift(...curNode.children)
+      fn.call(this, curNode)
+    }
   }
 }
 
